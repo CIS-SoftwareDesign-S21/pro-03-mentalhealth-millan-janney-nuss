@@ -11,7 +11,7 @@ Another module that can be added to this project is a friends/family list where 
 
 # Vision Statement    
 
-For people who are under the age of 25 who use social media and are one their devices a majority of the time. The Mental Health app is an android mobile application that allows the users to monitor their mental health. This includes daily tracking of their sleep count, work out frequency, weight, work/school hours, and social media usage. Unlike other apps or software that will only track one of these daily activities, the Mental Health app will allow users to track all sources that can affect their mental health all in one place.
+For people who are under the age of 25 who use social media and are on their devices a majority of the time. The Mental Health app is an android mobile application that allows the users to monitor their mental health. This includes daily tracking of their sleep count, work out frequency, weight, work/school hours, and social media usage. Unlike other apps or software that will only track one of these daily activities, the Mental Health app will allow users to track all sources that can affect their mental health all in one place.
 
 # Persona 1    
 Younger (16-22)
