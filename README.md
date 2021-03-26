@@ -11,10 +11,20 @@ Another module that can be added to this project is a friends/family list where 
 
 # Vision Statement    
 
+For people who are under the age of 25 who use social media and are on their devices a majority of the time. The Mental Health app is an android mobile application that allows the users to monitor their mental health. This includes daily tracking of their sleep count, work out frequency, weight, work/school hours, and social media usage. Unlike other apps or software that will only track one of these daily activities, the Mental Health app will allow users to track all sources that can affect their mental health all in one place.
+
 # Persona 1    
+Younger (16-22)
+
+This user that we are targeting is a younger person who has too much going on and waste a majority of their time on their phone and social media. He wants to be able to have a constant schedule and have less screen time.
+
+Jason, age 18, is a senior in high school in Troy, New York,  a city on the eastern bank of the Hudson river. He is currently taking four classes, two which are AP courses. He was born in the neighboring city, Albany, where his father works in the local museum and his mother is a teacher at a college in Troy. He is applying to colleges he is interested in as a computer science major.
+
+Jason deals with a lot on a daily basis but he has free time. When he has free time does it is spent on his phone. Most days are spent either on his computer or phone and it wastes a lot of time. ¬The Mental Health app would be useful for Jason since he deals with so much. It would allow him to keep his schedule together and not use his phone as much. Each week he could improve his schedule and strive for better goals.
+
 
 # Persona 2    
-Persona 1. Older (45-60+)
+Older (45-60+)
 
 The user we are targeting is someone who uses their phone and browses social media excessively, and wants to change their habits to live a better life. This falls into many categories of people, but for this persona we will be discussing the use for the older generation.
 
