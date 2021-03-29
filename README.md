@@ -1,4 +1,7 @@
-# Mental Health Wellness App   
+# Mental Health Wellness App  
+
+[Project Board](https://trello.com/b/GIeUAgxR/mental-health-app)<br>
+[Features List / Use Cases](https://docs.google.com/document/d/e/2PACX-1vTiVCZLvjkcPzHizGzPaE7ng8BKDIO60AIf_QIiFLVKX2GAVNDh5CkELsZr5-pxS3muKCyEK-m6B9pp/pub)
 
 # Project Overview    
 
