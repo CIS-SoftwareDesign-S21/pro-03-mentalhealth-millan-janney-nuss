@@ -33,6 +33,9 @@ The background for this user is that they are older, they’ve been very slow to
 This product meets their need by identifying their problem and quantifying it, letting them work towards their goals week by week. They will be able to see exactly how much time they spend online, and the app will encourage them to pursue a better life. Furthermore the app will be very easy to use, and will not frustrate them when they are learning all the features that are incorporated.
 
 # Persona 3   
+Lucy, age 30, is a medical student at Philadelphia College of Osteopathic Medicine. She has just begun her third year where she is now beginning to transition from the classroom to a more clinical setting, where she will now meet and interact with actual patients. She was born in Scranton, Pennsylvania and graduated from Pennsylvania State University with a bachelor's degree in biology. After graduation, she worked for a local research facility as a lab assistant for 3 years to save for medical school. She is a competent tech user, she has a smartphone and uses her laptop daily for school.
+
+Lucy has recently been finding her new responsibilities very stressful and time consuming. Because of these new stresses, she has begun stress eating and due to the sedentary nature of her schooling, has begun to gain weight. She knows that she needs to begin exercising and change her eating habits or she will continue to gain weight and potentially develop serious health problems. The Mental Health and Wellness application can provide her with the tools she needs to overcome these obstacles. She can set exercise goals and receive weekly progress reports to incentivize consistency. She can also track the hours she spends doing school work to reduce her elevated stress levels which will ultimately reduce her stress eating habits. This app will be very easy for her to use, as she is already familiar with current technology, especially her smartphone. 
 
 
 
