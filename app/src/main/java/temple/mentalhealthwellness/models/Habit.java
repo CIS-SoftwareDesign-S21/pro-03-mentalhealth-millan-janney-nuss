@@ -1,4 +1,4 @@
-package temple.mentalhealthwellness;
+package temple.mentalhealthwellness.models;
 
 /**
  * User defined habit

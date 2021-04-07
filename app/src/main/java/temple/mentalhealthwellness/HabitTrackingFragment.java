@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import temple.mentalhealthwellness.models.Habit;
+import temple.mentalhealthwellness.adapters.HabitRecyclerViewAdapter;
+
 public class HabitTrackingFragment extends Fragment {
     private RecyclerView recyclerView;
     private HabitRecyclerViewAdapter adapter;

@@ -1,4 +1,4 @@
-package temple.mentalhealthwellness;
+package temple.mentalhealthwellness.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import temple.mentalhealthwellness.R;
+import temple.mentalhealthwellness.models.Habit;
 
 public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder> {
     private ArrayList<Habit> dataSet;
