@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Mental Health Wellness</string>
+    <string name="mon_button_text">Mon</string>
+    <string name="tue_button_text">Tue</string>
+    <string name="wed_button_text">Wed</string>
+    <string name="thu_button_text">Thu</string>
+    <string name="fri_button_text">Fri</string>
+    <string name="sat_button_text">Sat</string>
+    <string name="sun_button_text">Sun</string>
 </resources>
