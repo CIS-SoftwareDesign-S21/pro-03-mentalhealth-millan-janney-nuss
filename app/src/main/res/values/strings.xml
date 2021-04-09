@@ -7,4 +7,8 @@
     <string name="fri_button_text">Fri</string>
     <string name="sat_button_text">Sat</string>
     <string name="sun_button_text">Sun</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_habit_tracking">Habits</string>
 </resources>

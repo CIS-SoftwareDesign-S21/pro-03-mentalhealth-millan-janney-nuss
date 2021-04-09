@@ -91,7 +91,7 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
         for (int i = 0; i < days.length; i++) {
             holder.setChecked(i, days[i]);
         }
-        holder.setDesc(habit.getDescription());
+        holder.setDesc(habit.toString());
     }
 
     @Override
