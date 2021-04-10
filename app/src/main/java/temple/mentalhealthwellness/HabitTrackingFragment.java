@@ -52,6 +52,7 @@ public class HabitTrackingFragment extends Fragment {
         one.getDays()[5] = true;
         dataSet.add(one);
 
+        /*
         Habit two = new Habit("Sleep 8 hr", 4);
         two.getDays()[1] = true;
         two.getDays()[5] = true;
@@ -59,5 +60,7 @@ public class HabitTrackingFragment extends Fragment {
 
         dataSet.add(new Habit("Study", 4));
         dataSet.add(new Habit("Read", 3));
+        */
+
     }
 }
