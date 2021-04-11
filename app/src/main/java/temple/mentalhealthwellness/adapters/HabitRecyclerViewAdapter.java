@@ -9,6 +9,8 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 import temple.mentalhealthwellness.R;
@@ -16,6 +18,7 @@ import temple.mentalhealthwellness.models.Habit;
 
 public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder> {
     private ArrayList<Habit> dataSet;
+    int habitAmt;
 
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
         private final TextView descText;
@@ -79,19 +82,22 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
     @NonNull
     @Override
     public HabitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.habit_row_item, parent, false);
-        return new HabitViewHolder(v);
+                View v = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.habit_row_item, parent, false);
+                return new HabitViewHolder(v);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull HabitViewHolder holder, int position) {
+        habitAmt = dataSet.size();
         Habit habit = dataSet.get(position);
         boolean[] days = habit.getDays();
         for (int i = 0; i < days.length; i++) {
             holder.setChecked(i, days[i]);
         }
         holder.setDesc(habit.toString());
+
     }
 
     @Override

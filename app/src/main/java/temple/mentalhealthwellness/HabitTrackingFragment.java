@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -33,11 +36,28 @@ public class HabitTrackingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_habit_tracking, container, false);
+
+        FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.fab);
+        fab.setOnClickListener(view -> {
+
+            if(dataSet.size()  < 5) {
+                dataSet.add(new Habit("Test", 3));
+                adapter = new HabitRecyclerViewAdapter(dataSet);
+                recyclerView.setAdapter(adapter);
+            }
+            else{
+                Toast.makeText(getActivity(),"Additional habits can be purchased for a low payment of 999.99 in the play store",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         recyclerView = root.findViewById(R.id.habit_tracking);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new HabitRecyclerViewAdapter(dataSet);
         recyclerView.setAdapter(adapter);
+
+
+
         return root;
     }
 
@@ -52,7 +72,7 @@ public class HabitTrackingFragment extends Fragment {
         one.getDays()[5] = true;
         dataSet.add(one);
 
-        /*
+
         Habit two = new Habit("Sleep 8 hr", 4);
         two.getDays()[1] = true;
         two.getDays()[5] = true;
@@ -60,7 +80,7 @@ public class HabitTrackingFragment extends Fragment {
 
         dataSet.add(new Habit("Study", 4));
         dataSet.add(new Habit("Read", 3));
-        */
+
 
     }
 }
