@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.CalendarView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.calendar:
                         setCurrentFragment(calendarFragment);
+
                         break;
                     case R.id.habit:
                         setCurrentFragment(habitFragment);
@@ -38,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
 
     private void setCurrentFragment(Fragment fragment) {
