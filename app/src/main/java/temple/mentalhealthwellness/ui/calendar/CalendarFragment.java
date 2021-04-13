@@ -1,4 +1,4 @@
-package temple.mentalhealthwellness;
+package temple.mentalhealthwellness.ui.calendar;
 
 import android.os.Bundle;
 

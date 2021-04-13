@@ -7,18 +7,14 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-
 import temple.mentalhealthwellness.R;
-import temple.mentalhealthwellness.models.Habit;
+import temple.mentalhealthwellness.data.db.entities.Habit;
 
-public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder> {
-    private ArrayList<Habit> dataSet;
-    int habitAmt;
+public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerViewAdapter.HabitViewHolder> {
 
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
         private final TextView descText;
@@ -75,33 +71,39 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
         }
     }
 
-    public HabitRecyclerViewAdapter(ArrayList<Habit> dataSet) {
-        this.dataSet = dataSet;
+    public HabitRecyclerViewAdapter(@NonNull DiffUtil.ItemCallback<Habit> diffCallback) {
+        super(diffCallback);
     }
 
-    @NonNull
     @Override
-    public HabitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.habit_row_item, parent, false);
-                return new HabitViewHolder(v);
-
+    public HabitViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.habit_row_item, parent, false);
+        return new HabitViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HabitViewHolder holder, int position) {
-        habitAmt = dataSet.size();
-        Habit habit = dataSet.get(position);
-        boolean[] days = habit.getDays();
-        for (int i = 0; i < days.length; i++) {
-            holder.setChecked(i, days[i]);
-        }
-        holder.setDesc(habit.toString());
-
+        Habit current = getItem(position);
+        holder.setChecked(0, current.mon);
+        holder.setChecked(1, current.tue);
+        holder.setChecked(2, current.wed);
+        holder.setChecked(3, current.thu);
+        holder.setChecked(4, current.fri);
+        holder.setChecked(5, current.sat);
+        holder.setChecked(6, current.sun);
+        holder.setDesc(current.toString());
     }
 
-    @Override
-    public int getItemCount() {
-        return dataSet.size();
+    public static class HabitDiff extends DiffUtil.ItemCallback<Habit> {
+        @Override
+        public boolean areItemsTheSame(@NonNull Habit oldItem, @NonNull Habit newItem) {
+            return oldItem == newItem;
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Habit oldItem, @NonNull Habit newItem) {
+            return oldItem.description.equals(newItem.description);
+        }
     }
 }
