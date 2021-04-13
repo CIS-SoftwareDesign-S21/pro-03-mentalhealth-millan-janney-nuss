@@ -17,4 +17,10 @@
         android:enabled="true"
         android:icon="@drawable/ic_goal"
         android:title="@string/title_habit_tracking"/>
+
+    <item
+        android:id="@+id/screentime"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="@string/title_screen_time" />
 </menu>

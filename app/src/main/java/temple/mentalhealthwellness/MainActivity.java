@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         final Fragment homeFragment = new HomeFragment();
         final Fragment calendarFragment = new CalendarFragment();
         final Fragment habitFragment = new HabitTrackingFragment();
+        final Fragment screenTimeFragment = new ScreenTimeFragment();
         setCurrentFragment(homeFragment);
 
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -33,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.habit:
                         setCurrentFragment(habitFragment);
+                        break;
+
+                    case R.id.screentime:
+                        setCurrentFragment(screenTimeFragment);
                         break;
                 }
                 return true;
