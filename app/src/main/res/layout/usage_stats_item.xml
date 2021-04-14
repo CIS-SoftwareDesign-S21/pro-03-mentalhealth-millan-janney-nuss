@@ -12,6 +12,7 @@
         android:maxLines="1"
         android:paddingEnd="6dip"
         android:paddingStart="12dip"
+        android:textColor="@color/black"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -21,5 +22,6 @@
         android:maxLines="1"
         android:paddingEnd="6dip"
         android:paddingStart="12dip"
+        android:textColor="@color/black"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 </LinearLayout>
