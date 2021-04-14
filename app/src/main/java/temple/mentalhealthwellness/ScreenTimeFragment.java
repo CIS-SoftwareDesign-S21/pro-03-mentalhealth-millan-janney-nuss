@@ -1,9 +1,11 @@
 package temple.mentalhealthwellness;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -39,7 +41,7 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
     private UsageStatsAdapter mAdapter;
     private PackageManager pm;
     Context parent;
-    int totalScreenTime = 0;
+    private int totalScreenTime = 0;
     private View view;
 
     public static class UsageTimeComparator implements Comparator<UsageStats> {
@@ -99,7 +101,6 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
             packageStats.addAll(map.values());
 
             sortList();
-            getTotalTime();
         }
 
 
@@ -154,6 +155,7 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
         public void getTotalTime() {
 
             int i = 0;
+            totalScreenTime = 0;
             while (i < getCount()) {
                 totalScreenTime += ((UsageStats)getItem(i)).getTotalTimeInForeground() / 1000;
                 i++;
@@ -220,11 +222,13 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
         mUsageStatsManager = (UsageStatsManager) ((MainActivity)parent).getSystemService(Context.USAGE_STATS_SERVICE);
         mInflater = (LayoutInflater) ((MainActivity)parent).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         pm = ((MainActivity)parent).getPackageManager();
-        requestPermissions();
+//        requestPermissions();
 
         ListView listView = (ListView) view.findViewById(R.id.pkg_list);
         mAdapter = new UsageStatsAdapter();
         listView.setAdapter(mAdapter);
+        ((UsageStatsAdapter) listView.getAdapter()).getTotalTime();
+
 
         return view;
 
@@ -233,14 +237,32 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
 
 
 
-    private void requestPermissions() {
-        List<UsageStats> stats = mUsageStatsManager
-                .queryUsageStats(UsageStatsManager.INTERVAL_DAILY, 0, System.currentTimeMillis());
-        boolean isEmpty = stats.isEmpty();
-        if (isEmpty) {
-            startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
-        }
-    }
+
+//    private void requestPermissions() {
+//        List<UsageStats> stats = mUsageStatsManager
+//                .queryUsageStats(UsageStatsManager.INTERVAL_DAILY, 0, System.currentTimeMillis());
+//        boolean isEmpty = stats.isEmpty();
+//        if (isEmpty) {
+//
+//            new AlertDialog.Builder(parent)
+//                    .setMessage("Do you want to allow usage permissions")
+//                    .setTitle("Allow Permissions")
+//                    .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
+//                        }
+//
+//                    })
+//                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                        }
+//                    })
+//                    .show();
+//
+//        }
+//    }
 
 
 
