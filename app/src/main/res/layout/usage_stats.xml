@@ -19,6 +19,7 @@
             android:textSize="22sp" />
 
         <TextView
+            android:id="@+id/totalTime"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/usage_time_label"

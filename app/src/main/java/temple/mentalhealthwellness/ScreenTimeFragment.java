@@ -39,6 +39,8 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
     private UsageStatsAdapter mAdapter;
     private PackageManager pm;
     Context parent;
+    int totalScreenTime = 0;
+    private View view;
 
     public static class UsageTimeComparator implements Comparator<UsageStats> {
         @Override
@@ -97,6 +99,7 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
             packageStats.addAll(map.values());
 
             sortList();
+            getTotalTime();
         }
 
 
@@ -148,8 +151,34 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
         }
 
 
+        public void getTotalTime() {
 
+            int i = 0;
+            while (i < getCount()) {
+                totalScreenTime += ((UsageStats)getItem(i)).getTotalTimeInForeground() / 1000;
+                i++;
+            }
 
+            int seconds = totalScreenTime % 60;
+            int hours = totalScreenTime / 60;
+            int minutes = hours % 60;
+            hours = hours / 60;
+
+            String minutesString = "" + minutes;
+            if (minutesString.length() == 1) {
+                minutesString = "0" + minutesString;
+            }
+
+            String secondsString = "" + seconds;
+            if (secondsString.length() == 1) {
+                secondsString = "0" + secondsString;
+            }
+
+            String time = hours + ":" + minutesString + ":" + secondsString;
+            TextView label = (TextView) view.findViewById(R.id.totalTime);
+            label.setText(time);
+
+        }
 
 
         void sortList(int sortOrder) {
@@ -186,8 +215,7 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.usage_stats, container, false);
-//        ((MainActivity)parent).setContentView(R.layout.usage_stats);
+        view = inflater.inflate(R.layout.usage_stats, container, false);
 
         mUsageStatsManager = (UsageStatsManager) ((MainActivity)parent).getSystemService(Context.USAGE_STATS_SERVICE);
         mInflater = (LayoutInflater) ((MainActivity)parent).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
