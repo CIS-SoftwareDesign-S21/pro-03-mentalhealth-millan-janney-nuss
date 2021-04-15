@@ -1,4 +1,4 @@
-package temple.mentalhealthwellness;
+package temple.mentalhealthwellness.ui.home;
 
 import android.os.Bundle;
 
@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import temple.mentalhealthwellness.R;
 
-public class CalendarFragment extends Fragment {
+public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 }

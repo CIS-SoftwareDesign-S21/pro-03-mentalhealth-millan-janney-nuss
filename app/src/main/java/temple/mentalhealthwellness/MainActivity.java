@@ -1,5 +1,14 @@
 package temple.mentalhealthwellness;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +32,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    Fragment homeFragment;
+    Fragment calendarFragment;
+    Fragment habitFragment;
     Fragment screenTimeFragment;
 
     @Override
@@ -32,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        final Fragment homeFragment = new HomeFragment();
-        final Fragment calendarFragment = new CalendarFragment();
-        final Fragment habitFragment = new HabitTrackingFragment();
-         screenTimeFragment = new ScreenTimeFragment();
+        homeFragment = new HomeFragment();
+        calendarFragment = new CalendarFragment();
+        habitFragment = new HabitTrackingFragment();
+        screenTimeFragment = new ScreenTimeFragment();
         setCurrentFragment(homeFragment);
 
 
