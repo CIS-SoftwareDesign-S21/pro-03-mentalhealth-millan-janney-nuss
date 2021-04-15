@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/border">
+
     <TextView
         android:id="@+id/description_text"
         android:padding="2dp"
