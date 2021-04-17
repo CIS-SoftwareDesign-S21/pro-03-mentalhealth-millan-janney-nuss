@@ -17,8 +17,9 @@ import java.util.ArrayList;
 
 import temple.mentalhealthwellness.models.Habit;
 import temple.mentalhealthwellness.adapters.HabitRecyclerViewAdapter;
+import temple.mentalhealthwellness.models.removeHabit;
 
-public class HabitTrackingFragment extends Fragment {
+public class HabitTrackingFragment extends Fragment implements removeHabit {
     private RecyclerView recyclerView;
     private HabitRecyclerViewAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -40,22 +41,21 @@ public class HabitTrackingFragment extends Fragment {
         FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
 
-            if(dataSet.size()  < 5) {
+            // Only display up to 5 habits
+            if (dataSet.size() < 5) {
                 dataSet.add(new Habit("Test", 3));
-                adapter = new HabitRecyclerViewAdapter(dataSet);
+                adapter = new HabitRecyclerViewAdapter(dataSet, rm);
                 recyclerView.setAdapter(adapter);
-            }
-            else{
-                Toast.makeText(getActivity(),"Additional habits can be purchased for a low payment of 999.99 in the play store",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "Additional habits can be purchased for a low payment of 999.99 in the play store", Toast.LENGTH_SHORT).show();
             }
         });
 
         recyclerView = root.findViewById(R.id.habit_tracking);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new HabitRecyclerViewAdapter(dataSet);
+        adapter = new HabitRecyclerViewAdapter(dataSet, rm);
         recyclerView.setAdapter(adapter);
-
 
 
         return root;
@@ -82,5 +82,18 @@ public class HabitTrackingFragment extends Fragment {
         dataSet.add(new Habit("Read", 3));
 
 
+    }
+
+    removeHabit rm = new removeHabit() {
+        @Override
+        public void onTextClick(String habit) {
+            Toast.makeText(getActivity(), habit, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    @Override
+    public void onTextClick(String habit) {
+        Toast.makeText(getActivity(), habit, Toast.LENGTH_SHORT).show();
     }
 }

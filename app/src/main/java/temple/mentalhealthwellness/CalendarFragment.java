@@ -29,33 +29,18 @@ public class CalendarFragment extends Fragment {
                 root.findViewById(R.id.date_view);
 
         // Add Listener in calendar
+        // Listener for calendarview
         calender
                 .setOnDateChangeListener(
-                        new CalendarView
-                                .OnDateChangeListener() {
-                            @Override
+                        (view, year, month, dayOfMonth) -> {
 
-                            // In this Listener have one method
-                            // and in this method we will
-                            // get the value of DAYS, MONTH, YEARS
-                            public void onSelectedDayChange(
-                                    @NonNull CalendarView view,
-                                    int year,
-                                    int month,
-                                    int dayOfMonth)
-                            {
+                            // Display the date at top of calendar
+                            String Date
+                                    = dayOfMonth + "-"
+                                    + (month + 1) + "-" + year;
 
-                                // Store the value of date with
-                                // format in String type Variable
-                                // Add 1 in month because month
-                                // index is start with 0
-                                String Date
-                                        = dayOfMonth + "-"
-                                        + (month + 1) + "-" + year;
-
-                                // set this date in TextView for Display
-                                date_view.setText(Date);
-                            }
+                            // Set the date
+                            date_view.setText(Date);
                         });
         return root;
     }

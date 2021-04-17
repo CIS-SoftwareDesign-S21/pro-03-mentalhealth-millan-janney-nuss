@@ -3,7 +3,9 @@ package temple.mentalhealthwellness.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -15,10 +17,15 @@ import java.util.ArrayList;
 
 import temple.mentalhealthwellness.R;
 import temple.mentalhealthwellness.models.Habit;
+import temple.mentalhealthwellness.*;
+import temple.mentalhealthwellness.models.removeHabit;
 
 public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder> {
     private ArrayList<Habit> dataSet;
     int habitAmt;
+    private String description;
+    removeHabit listener;
+    ImageButton deleteButton;
 
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
         private final TextView descText;
@@ -29,6 +36,9 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
         private final ToggleButton friButton;
         private final ToggleButton satButton;
         private final ToggleButton sunButton;
+        private final ImageButton deleteButton;
+
+        private String description;
 
         public HabitViewHolder(@NonNull View v) {
             super(v);
@@ -40,10 +50,12 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
             friButton = v.findViewById(R.id.toggle_fri);
             satButton = v.findViewById(R.id.toggle_sat);
             sunButton = v.findViewById(R.id.toggle_sun);
+            deleteButton = v.findViewById(R.id.delete);
         }
 
         public void setDesc(String desc) {
             descText.setText(desc);
+            description = desc;
         }
 
         public void setChecked(int day, boolean checked) {
@@ -75,15 +87,18 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
         }
     }
 
-    public HabitRecyclerViewAdapter(ArrayList<Habit> dataSet) {
+    public HabitRecyclerViewAdapter(ArrayList<Habit> dataSet, removeHabit newListen) {
         this.dataSet = dataSet;
+        listener = newListen;
     }
 
     @NonNull
     @Override
     public HabitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.habit_row_item, parent, false);
+        deleteButton = v.findViewById(R.id.delete);
+
                 return new HabitViewHolder(v);
 
     }
@@ -92,16 +107,28 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
     public void onBindViewHolder(@NonNull HabitViewHolder holder, int position) {
         habitAmt = dataSet.size();
         Habit habit = dataSet.get(position);
+        this.description = dataSet.get(position).getDescription();
         boolean[] days = habit.getDays();
         for (int i = 0; i < days.length; i++) {
             holder.setChecked(i, days[i]);
         }
         holder.setDesc(habit.toString());
 
+        // Delete button listener
+        deleteButton.setOnClickListener(v -> removeAt(position));
     }
 
     @Override
     public int getItemCount() {
         return dataSet.size();
     }
+
+    // Remove an item from the view
+    private void removeAt(int position) {
+        dataSet.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, dataSet.size());
+    }
+
+
 }
