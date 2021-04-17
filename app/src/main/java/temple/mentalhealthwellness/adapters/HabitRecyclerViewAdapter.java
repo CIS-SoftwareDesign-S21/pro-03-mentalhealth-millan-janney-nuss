@@ -5,26 +5,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 
 import temple.mentalhealthwellness.R;
 import temple.mentalhealthwellness.models.Habit;
-import temple.mentalhealthwellness.*;
-import temple.mentalhealthwellness.models.removeHabit;
 
 public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecyclerViewAdapter.HabitViewHolder> {
     private ArrayList<Habit> dataSet;
     int habitAmt;
     private String description;
-    removeHabit listener;
     ImageButton deleteButton;
 
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
@@ -87,9 +81,8 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
         }
     }
 
-    public HabitRecyclerViewAdapter(ArrayList<Habit> dataSet, removeHabit newListen) {
+    public HabitRecyclerViewAdapter(ArrayList<Habit> dataSet) {
         this.dataSet = dataSet;
-        listener = newListen;
     }
 
     @NonNull
