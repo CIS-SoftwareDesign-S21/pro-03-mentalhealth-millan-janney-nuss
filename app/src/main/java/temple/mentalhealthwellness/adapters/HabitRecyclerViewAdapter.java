@@ -20,6 +20,7 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
     int habitAmt;
     private String description;
     ImageButton deleteButton;
+    ImageButton editButton;
 
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
         private final TextView descText;

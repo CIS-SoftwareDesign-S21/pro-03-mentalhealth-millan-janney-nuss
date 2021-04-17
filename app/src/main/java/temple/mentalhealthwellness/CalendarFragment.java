@@ -36,8 +36,8 @@ public class CalendarFragment extends Fragment {
 
                             // Display the date at top of calendar
                             String Date
-                                    = dayOfMonth + "-"
-                                    + (month + 1) + "-" + year;
+                                    = (month + 1) + "-"
+                                    + dayOfMonth + "-" + year;
 
                             // Set the date
                             date_view.setText(Date);
