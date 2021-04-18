@@ -32,6 +32,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import temple.mentalhealthwellness.ui.home.HomeFragment;
+
 public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "Usage Stats Activity";
@@ -42,6 +44,7 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
     private PackageManager pm;
     Context parent;
     private int totalScreenTime = 0;
+    private String time;
     private View view;
 
     public static class UsageTimeComparator implements Comparator<UsageStats> {
@@ -176,9 +179,10 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
                 secondsString = "0" + secondsString;
             }
 
-            String time = hours + ":" + minutesString + ":" + secondsString;
+            time = hours + ":" + minutesString + ":" + secondsString;
             TextView label = (TextView) view.findViewById(R.id.totalTime);
             label.setText(time);
+
 
         }
 
@@ -207,10 +211,7 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
         } else {
             throw new RuntimeException();
         }
-
     }
-
-
 
 
     @Override
@@ -219,24 +220,20 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
 
         view = inflater.inflate(R.layout.usage_stats, container, false);
 
-        mUsageStatsManager = (UsageStatsManager) ((MainActivity)parent).getSystemService(Context.USAGE_STATS_SERVICE);
-        mInflater = (LayoutInflater) ((MainActivity)parent).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        pm = ((MainActivity)parent).getPackageManager();
+        mUsageStatsManager = (UsageStatsManager) parent.getSystemService(Context.USAGE_STATS_SERVICE);
+        mInflater = (LayoutInflater) parent.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        pm = parent.getPackageManager();
 //        requestPermissions();
 
-        ListView listView = (ListView) view.findViewById(R.id.pkg_list);
+        ListView listView = view.findViewById(R.id.pkg_list);
         mAdapter = new UsageStatsAdapter();
         listView.setAdapter(mAdapter);
         ((UsageStatsAdapter) listView.getAdapter()).getTotalTime();
 
-
+        ((TimeInterface) parent).setTime(time);
         return view;
 
     }
-
-
-
-
 
 //    private void requestPermissions() {
 //        List<UsageStats> stats = mUsageStatsManager
@@ -273,5 +270,10 @@ public class ScreenTimeFragment extends Fragment implements AdapterView.OnItemSe
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+    }
+
+
+    public interface TimeInterface {
+        void setTime(String total);
     }
 }
