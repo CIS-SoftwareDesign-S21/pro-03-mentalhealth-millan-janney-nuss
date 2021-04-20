@@ -22,9 +22,50 @@
     <CalendarView
         android:id="@+id/calender"
         android:layout_marginTop="80dp"
-        android:layout_marginLeft="19dp"
+        android:layout_marginLeft="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </CalendarView>
+
+    <TextView
+        android:id="@+id/ratingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calender"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:text="Rating" />
+    <TextView
+        android:id="@+id/screenTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingText"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:text="Screen Time" />
+    <TextView
+        android:id="@+id/firsthabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/screenTime"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:text="Habit1Description" />
+    <TextView
+        android:id="@+id/secondhabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firsthabit"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:text="Habit2Description" />
+    <TextView
+        android:id="@+id/thirdhabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/secondhabit"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:text="Habit3Description" />
 
 </RelativeLayout>
