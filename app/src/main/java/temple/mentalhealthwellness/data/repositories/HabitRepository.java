@@ -27,4 +27,7 @@ public class HabitRepository {
     public void insert(Habit habit) {
         AppDatabase.databaseWriter.execute(() -> habitDao.insert(habit));
     }
+    public void delete(Habit habit) {
+        AppDatabase.databaseWriter.execute(() -> habitDao.deleteAll());
+    }
 }
