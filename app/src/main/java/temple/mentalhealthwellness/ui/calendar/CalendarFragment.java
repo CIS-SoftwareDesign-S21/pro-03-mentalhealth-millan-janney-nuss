@@ -35,9 +35,7 @@ public class CalendarFragment extends Fragment {
                                 .OnDateChangeListener() {
                             @Override
 
-                            // In this Listener have one method
-                            // and in this method we will
-                            // get the value of DAYS, MONTH, YEARS
+                            // Date listener
                             public void onSelectedDayChange(
                                     @NonNull CalendarView view,
                                     int year,
@@ -45,10 +43,7 @@ public class CalendarFragment extends Fragment {
                                     int dayOfMonth)
                             {
 
-                                // Store the value of date with
-                                // format in String type Variable
-                                // Add 1 in month because month
-                                // index is start with 0
+                                // Display the date at the top of the screen
                                 String Date
                                         = dayOfMonth + "-"
                                         + (month + 1) + "-" + year;

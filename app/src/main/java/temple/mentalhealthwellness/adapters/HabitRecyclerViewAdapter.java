@@ -1,8 +1,11 @@
 package temple.mentalhealthwellness.adapters;
 
+import android.app.LauncherActivity;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -11,11 +14,14 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import temple.mentalhealthwellness.R;
 import temple.mentalhealthwellness.data.db.entities.Habit;
 
 public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerViewAdapter.HabitViewHolder> {
-
+    ImageButton deleteButton;
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
         private final TextView descText;
         private final ToggleButton monButton;
@@ -25,6 +31,7 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
         private final ToggleButton friButton;
         private final ToggleButton satButton;
         private final ToggleButton sunButton;
+
 
         public HabitViewHolder(@NonNull View v) {
             super(v);
@@ -36,6 +43,7 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
             friButton = v.findViewById(R.id.toggle_fri);
             satButton = v.findViewById(R.id.toggle_sat);
             sunButton = v.findViewById(R.id.toggle_sun);
+            ImageButton deleteButton = v.findViewById(R.id.delete);
         }
 
         public void setDesc(String desc) {
@@ -79,6 +87,9 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
     public HabitViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.habit_row_item, parent, false);
+        deleteButton = v.findViewById(R.id.delete);
+
+
         return new HabitViewHolder(v);
     }
 
@@ -93,6 +104,19 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
         holder.setChecked(5, current.sat);
         holder.setChecked(6, current.sun);
         holder.setDesc(current.toString());
+        //current.
+        //ImageButton deleteButton =
+        deleteButton.setOnClickListener(v -> removeAt(position));
+
+    }
+    private void removeAt(int position) {
+        List<Habit> currentList = new ArrayList<Habit>();
+        //if(getCurrentList().size()>1) {
+        currentList = getCurrentList();
+        //currentList.remove(position);
+        submitList(currentList);
+        notifyItemRemoved(position);
+        //notifyItemRangeChanged(position, getCurrentList().size());
     }
 
     public static class HabitDiff extends DiffUtil.ItemCallback<Habit> {
