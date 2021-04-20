@@ -1,8 +1,13 @@
 package temple.mentalhealthwellness.adapters;
 
+import android.content.Context;
+import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -20,7 +25,8 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
     int habitAmt;
     private String description;
     ImageButton deleteButton;
-    ImageButton editButton;
+
+    TextView descText;
 
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
         private final TextView descText;
@@ -31,9 +37,7 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
         private final ToggleButton friButton;
         private final ToggleButton satButton;
         private final ToggleButton sunButton;
-        private final ImageButton deleteButton;
-
-        private String description;
+        //private final ImageButton deleteButton;
 
         public HabitViewHolder(@NonNull View v) {
             super(v);
@@ -45,12 +49,12 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
             friButton = v.findViewById(R.id.toggle_fri);
             satButton = v.findViewById(R.id.toggle_sat);
             sunButton = v.findViewById(R.id.toggle_sun);
-            deleteButton = v.findViewById(R.id.delete);
+            //deleteButton = v.findViewById(R.id.delete);
         }
 
         public void setDesc(String desc) {
             descText.setText(desc);
-            description = desc;
+            //description = desc;
         }
 
         public void setChecked(int day, boolean checked) {
@@ -91,9 +95,26 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
     public HabitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.habit_row_item, parent, false);
+        // Delete / edit habit button
         deleteButton = v.findViewById(R.id.delete);
+        descText = v.findViewById(R.id.description_text);
 
-                return new HabitViewHolder(v);
+        /*
+        descText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // hide virtual keyboard
+                    InputMethodManager imm = (InputMethodManager) parent.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(descText.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            }
+        });
+        */
+        return new HabitViewHolder(v);
 
     }
 
@@ -107,9 +128,10 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
             holder.setChecked(i, days[i]);
         }
         holder.setDesc(habit.toString());
-
         // Delete button listener
         deleteButton.setOnClickListener(v -> removeAt(position));
+
+
     }
 
     @Override
@@ -119,9 +141,11 @@ public class HabitRecyclerViewAdapter extends RecyclerView.Adapter<HabitRecycler
 
     // Remove an item from the view
     private void removeAt(int position) {
-        dataSet.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, dataSet.size());
+        if(dataSet.size()>1) {
+            dataSet.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, dataSet.size());
+        }
     }
 
 

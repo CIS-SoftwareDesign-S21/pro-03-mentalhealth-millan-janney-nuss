@@ -39,7 +39,6 @@ public class HabitTrackingFragment extends Fragment {
 
         FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-
             // Only display up to 6 habits
             if (dataSet.size() < 6) {
                 dataSet.add(new Habit("Test", 3));
