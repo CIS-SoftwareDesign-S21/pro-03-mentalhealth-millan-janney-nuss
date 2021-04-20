@@ -31,11 +31,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    Fragment homeFragment;
+import temple.mentalhealthwellness.ui.calendar.CalendarFragment;
+import temple.mentalhealthwellness.ui.habit.HabitTrackingFragment;
+import temple.mentalhealthwellness.ui.home.HomeFragment;
+
+public class MainActivity extends AppCompatActivity implements ScreenTimeFragment.TimeInterface {
+    HomeFragment homeFragment;
     Fragment calendarFragment;
     Fragment habitFragment;
-    Fragment screenTimeFragment;
+    ScreenTimeFragment screenTimeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         habitFragment = new HabitTrackingFragment();
         screenTimeFragment = new ScreenTimeFragment();
         setCurrentFragment(homeFragment);
+
 
 
 
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 0 && requestCode == 1111) {
             setCurrentFragment(screenTimeFragment);
+
         }
 
     }
@@ -102,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             startActivityForResult(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS), 1111);
                         }
-
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
@@ -133,4 +138,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void setTime(String total) {
+        homeFragment.setTotal(total);
+    }
 }
+
