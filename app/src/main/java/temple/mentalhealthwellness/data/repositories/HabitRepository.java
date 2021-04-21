@@ -11,8 +11,8 @@ import temple.mentalhealthwellness.data.db.HabitDao;
 import temple.mentalhealthwellness.data.db.entities.Habit;
 
 public class HabitRepository {
-    private HabitDao habitDao;
-    private LiveData<List<Habit>> habits;
+    private final HabitDao habitDao;
+    private final LiveData<List<Habit>> habits;
 
     public HabitRepository(Application app) {
         AppDatabase appDb = AppDatabase.getDatabase(app);
@@ -27,7 +27,8 @@ public class HabitRepository {
     public void insert(Habit habit) {
         AppDatabase.databaseWriter.execute(() -> habitDao.insert(habit));
     }
+
     public void delete(Habit habit) {
-        AppDatabase.databaseWriter.execute(() -> habitDao.deleteAll());
+        AppDatabase.databaseWriter.execute(() -> habitDao.delete(habit));
     }
 }
