@@ -1,7 +1,5 @@
 package temple.mentalhealthwellness.adapters;
 
-import android.app.LauncherActivity;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +12,12 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import temple.mentalhealthwellness.R;
 import temple.mentalhealthwellness.data.db.entities.Habit;
 
 public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerViewAdapter.HabitViewHolder> {
-    ImageButton deleteButton;
+    private OnItemDeletedListener deleteListener;
+
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
         private final TextView descText;
         private final ToggleButton monButton;
@@ -31,7 +27,7 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
         private final ToggleButton friButton;
         private final ToggleButton satButton;
         private final ToggleButton sunButton;
-
+        private final ImageButton deleteButton;
 
         public HabitViewHolder(@NonNull View v) {
             super(v);
@@ -43,7 +39,7 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
             friButton = v.findViewById(R.id.toggle_fri);
             satButton = v.findViewById(R.id.toggle_sat);
             sunButton = v.findViewById(R.id.toggle_sun);
-            ImageButton deleteButton = v.findViewById(R.id.delete);
+            deleteButton = v.findViewById(R.id.delete);
         }
 
         public void setDesc(String desc) {
@@ -83,13 +79,11 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
         super(diffCallback);
     }
 
+    @NonNull
     @Override
     public HabitViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.habit_row_item, parent, false);
-        deleteButton = v.findViewById(R.id.delete);
-
-
         return new HabitViewHolder(v);
     }
 
@@ -104,19 +98,12 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
         holder.setChecked(5, current.sat);
         holder.setChecked(6, current.sun);
         holder.setDesc(current.toString());
-        //current.
-        //ImageButton deleteButton =
-        deleteButton.setOnClickListener(v -> removeAt(position));
 
-    }
-    private void removeAt(int position) {
-        List<Habit> currentList = new ArrayList<Habit>();
-        //if(getCurrentList().size()>1) {
-        currentList = getCurrentList();
-        //currentList.remove(position);
-        submitList(currentList);
-        notifyItemRemoved(position);
-        //notifyItemRangeChanged(position, getCurrentList().size());
+        holder.deleteButton.setOnClickListener(v -> {
+            if (this.deleteListener != null) {
+                this.deleteListener.delete(current);
+            }
+        });
     }
 
     public static class HabitDiff extends DiffUtil.ItemCallback<Habit> {
@@ -129,5 +116,17 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
         public boolean areContentsTheSame(@NonNull Habit oldItem, @NonNull Habit newItem) {
             return oldItem.description.equals(newItem.description);
         }
+    }
+
+    public void setOnItemDeletedListener(OnItemDeletedListener listener) {
+        this.deleteListener = listener;
+    }
+
+    /**
+     * Interface to communicate to the fragment
+     * that an item has been selected to be deleted
+     */
+    public interface OnItemDeletedListener {
+        void delete(Habit habit);
     }
 }

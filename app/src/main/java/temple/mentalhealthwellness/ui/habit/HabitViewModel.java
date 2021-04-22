@@ -11,7 +11,7 @@ import temple.mentalhealthwellness.data.repositories.HabitRepository;
 import temple.mentalhealthwellness.data.db.entities.Habit;
 
 public class HabitViewModel extends AndroidViewModel {
-    private HabitRepository repository;
+    private final HabitRepository repository;
     private final LiveData<List<Habit>> habits;
 
     public HabitViewModel(Application app) {
@@ -26,5 +26,9 @@ public class HabitViewModel extends AndroidViewModel {
 
     public void insert(Habit habit) {
         repository.insert(habit);
+    }
+
+    public void delete(Habit habit) {
+        repository.delete(habit);
     }
 }
