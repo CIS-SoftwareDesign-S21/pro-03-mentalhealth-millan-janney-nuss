@@ -100,10 +100,31 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
         holder.setDesc(current.toString());
 
         holder.deleteButton.setOnClickListener(v -> {
-            if (this.deleteListener != null) {
-                this.deleteListener.delete(current);
+            if (deleteListener != null) {
+                deleteListener.delete(current);
             }
         });
+
+        holder.monButton.setOnClickListener(v ->
+                current.mon = !current.mon);
+
+        holder.tueButton.setOnClickListener(v ->
+                current.tue = !current.tue);
+
+        holder.wedButton.setOnClickListener(v ->
+                current.wed = !current.wed);
+
+        holder.thuButton.setOnClickListener(v ->
+                current.thu = !current.thu);
+
+        holder.friButton.setOnClickListener(v ->
+                current.fri = !current.fri);
+
+        holder.satButton.setOnClickListener(v ->
+                current.sat = !current.sat);
+
+        holder.sunButton.setOnClickListener(v ->
+                current.sun = !current.sun);
     }
 
     public static class HabitDiff extends DiffUtil.ItemCallback<Habit> {
@@ -119,7 +140,7 @@ public class HabitRecyclerViewAdapter extends ListAdapter<Habit, HabitRecyclerVi
     }
 
     public void setOnItemDeletedListener(OnItemDeletedListener listener) {
-        this.deleteListener = listener;
+        deleteListener = listener;
     }
 
     /**

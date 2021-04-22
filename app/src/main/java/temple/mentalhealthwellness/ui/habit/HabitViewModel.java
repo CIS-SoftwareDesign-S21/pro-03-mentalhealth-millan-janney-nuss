@@ -31,4 +31,8 @@ public class HabitViewModel extends AndroidViewModel {
     public void delete(Habit habit) {
         repository.delete(habit);
     }
+
+    public void update(Habit habit) {
+        repository.update(habit);
+    }
 }

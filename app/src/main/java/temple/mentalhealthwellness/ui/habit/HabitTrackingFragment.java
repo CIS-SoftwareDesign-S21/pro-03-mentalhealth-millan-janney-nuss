@@ -40,19 +40,26 @@ public class HabitTrackingFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
-        habitViewModel.getHabits().observe(getViewLifecycleOwner(), habits -> {
-            adapter.submitList(habits);
-        });
+        habitViewModel.getHabits().observe(getViewLifecycleOwner(), habits ->
+                adapter.submitList(habits));
 
-        adapter.setOnItemDeletedListener(habit -> {
-            habitViewModel.delete(habit);
-        });
+        adapter.setOnItemDeletedListener(habit ->
+                habitViewModel.delete(habit));
 
-        newHabitButton.setOnClickListener(v -> {
-            showHabitDialog();
-        });
+        newHabitButton.setOnClickListener(v ->
+                showHabitDialog());
 
         return root;
+    }
+
+
+    @Override
+    // Postpone any database transactions until the habit is destroyed
+    public void onStop() {
+        super.onStop();
+        for (Habit h : adapter.getCurrentList()) {
+            habitViewModel.update(h);
+        }
     }
 
     /**
@@ -64,9 +71,8 @@ public class HabitTrackingFragment extends Fragment {
         builder.setView(view)
                 .setTitle(getString(R.string.add_habit_title))
                 .setPositiveButton(R.string.button_submit, null)
-                .setNegativeButton(R.string.button_cancel, (dialog, which) -> {
-                    dialog.cancel();
-                });
+                .setNegativeButton(R.string.button_cancel, (dialog, which) ->
+                        dialog.cancel());
 
         AlertDialog dialog = builder.create();
         dialog.show();
