@@ -19,7 +19,7 @@
     <string name="habit_hint_desc">Description</string>
     <string name="habit_hint_freq">Frequency</string>
     <string name="button_cancel">Cancel</string>
-    <string name="button_submit">Submit</string>
+    <string name="button_submit">Ok</string>
     <string name="add_habit_title">Enter Habit</string>
     <string name="empty_error">Field cannot be empty</string>
     <string name="freq_error">Frequency must be between 1 and 7</string>
